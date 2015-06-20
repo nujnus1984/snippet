@@ -27,5 +27,5 @@ index.ejs
 
 指定layout 比如 master.ejs
 exports.index = function(req, res){
-res.render('index', {title:'express',layout:''master});
+res.render('index', {title:'express',layout:'master.ejs'});
 };

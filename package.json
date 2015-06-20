@@ -1,0 +1,25 @@
+{
+  "name": "snippet",
+  "version": "1.0.0",
+  "description": "a set of samples",
+  "main": "api.js",
+  "dependencies": {
+    "ejs": "^2.3.1",
+    "express": "^4.12.4",
+    "express-partials": "^0.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nujnus1984/snippet.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nujnus1984/snippet/issues"
+  },
+  "homepage": "https://github.com/nujnus1984/snippet#readme"
+}
