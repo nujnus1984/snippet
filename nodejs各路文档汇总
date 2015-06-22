@@ -1,0 +1,371 @@
+
+#---------------------------------------------------------------------------------------------------
+http://bower.io/
+Bower
+A package manager for the web
+
+Web sites are made of lots of things — frameworks, libraries, assets, utilities, and rainbows. Bower manages all these things for you.
+Bower works by fetching and installing packages from all over,
+taking care of hunting, 
+finding, 
+downloading, 
+and saving the stuff you’re looking for. 
+Bower keeps track of these packages in a manifest file, bower.json. 
+How you use packages is up to you. 
+Bower provides hooks to facilitate using packages in your tools and workflows.
+Bower is optimized for the front-end. 
+Bower uses a flat dependency tree, 
+requiring only one version for each package, 
+reducing page load to a minimum.
+
+#---------------------------------------------------------------------------------------------------
+
+https://www.npmjs.com/
+npm包管理主页
+
+(((most depended-upon packages))):
+
+lodash
+The modern build of lodash modular utilities.
+3.9.3
+async
+Higher-order functions and common patterns for asynchronous code
+1.2.1
+underscore
+JavaScript's functional programming helper library.
+1.8.3
+request
+Simplified HTTP request client.
+2.58.0
+commander
+the complete solution for node.js command-line programs
+2.8.1
+express
+Fast, unopinionated, minimalist web framework
+4.13.0
+debug
+small debugging utility
+2.2.0 published a month ago by tootallnate
+chalk
+Terminal string styling done right. Much color.
+1.0.0 published 4 months ago by sindresorhus
+q
+A library for promises (CommonJS/Promises/A,B,D)
+1.4.1 published a month ago by kriskowal
+colors
+get colors in your node.js console
+1.1.2
+mkdirp
+Recursively mkdir, like `mkdir -p`
+0.5.1 published a month ago by substack
+coffee-script
+Unfancy JavaScript
+1.9.3
+
+#---------------------------------------------------------------------------------------------------
+
+
+#这个是mongoose api v4 版本
+http://mongoosejs.com/docs/api.html
+
+#这个是mongoose api v3.8.23
+http://www.motlinks.com/View.aspx?view=267030&Mongoose+API+v3.8.23
+
+#这个是mongoose api v3.7
+http://mongoosejs.com/docs/3.7.x/docs/api.html
+
+#---------------------------------------------------------------------------------------------------
+http://nqdeng.github.io/7-days-nodejs/#3.3.1
+七天学会NodeJS
+
+NodeJS基础
+什么是NodeJS
+有啥用处
+如何安装
+安装程序
+编译安装
+如何运行
+权限问题
+模块
+require
+exports
+module
+模块初始化
+主模块
+完整示例
+二进制模块
+小结
+
+代码的组织和部署
+模块路径解析规则
+包（package）
+  index.js
+  package.json
+命令行程序
+  Linux
+  Windows
+工程目录
+NPM
+  下载三方包
+  安装命令行程序
+  发布代码
+  版本号
+  灵机一点
+  小结
+
+
+文件操作
+开门红
+  小文件拷贝
+  大文件拷贝
+API走马观花
+  Buffer（数据块）
+  Stream（数据流）
+  File System（文件系统）
+  Path（路径）
+  遍历目录
+递归算法
+  遍历算法
+  同步遍历
+  异步遍历
+文本编码
+  BOM的移除
+  GBK转UTF8
+  单字节编码
+小结
+
+
+网络操作
+开门红
+API走马观花
+  HTTP
+  HTTPS
+  URL
+  Query String
+  Zlib
+  Net
+灵机一点
+小结
+
+
+进程管理
+开门红
+API走马观花
+  Process
+  Child Process
+  Cluster
+应用场景
+  如何获取命令行参数
+  如何退出程序
+  如何控制输入输出
+  如何降权
+  如何创建子进程
+  进程间如何通讯
+  如何守护子进程
+小结
+
+
+异步编程
+回调
+代码设计模式
+函数返回值
+遍历数组
+异常处理
+域（Domain）
+陷阱
+小结
+大示例
+需求
+第一次迭代
+设计
+实现
+第二次迭代
+设计
+实现
+第三次迭代
+设计
+实现
+第四次迭代
+设计
+实现
+后续迭代
+小结
+
+
+#---------------------------------------------------------------------------------------------------
+
+http://www.douban.com/group/topic/35067110/
+
+node.js相关的中文文档及教程
+风
+来自: 风 2012-12-12 14:08:40
+收集帖: 
+node.js 中文api ：http://nodeapi.ucdok.com/ 
+node.js入门中文版: http://nodebeginner.org/index-zh-cn.html 
+
+express3.*中文API: http://expressjs.jser.us/ 
+express4.*中文API: http://expressjs.jser.us/4x_zh-cn/api.html 
+koa 中文文档: 
+https://github.com/turingou/koa-guide 
+http://koajs.emptystack.net/ 
+http://koajs.cn/ 
+//Express 原班人马打造的 比express更轻更富有表现力的web框架 
+
+深入理解Express: http://xvfeng.me/posts/understanding-expressjs/ 
+meteor中文文档:http://d0cs.meteor.com/ 
+NodeJS 和 Socket.io 中文入门教程:http://t.cn/zOMwxCg 
+jade中文文档: http://expressjs.jser.us/jade.html 
+Juicer 中文文档:http://juicer.name/docs/docs_zh_cn.html 
+
+Mongoose 基本功能使用:http://t.cn/zOIKPeB 
+
+
+以下是一些blog教程系列: 
+
+
+Node.js 包教不包会 (alsotang) https://github.com/alsotang/node-lessons 
+让我们基于Node.js创建一个Web应用系列(5篇)：http://t.cn/z8JnzkA 
+一周node.js系列(7篇） :http://t.cn/zOKuc9D 
+从零开始nodejs系列: http://blog.fens.me/series-nodejs/ 
+一起学node.js (荐): http://t.cn/zHxNXXt 
+Node.js高级编程(荐): http://t.cn/zYmuqaH 
+深入浅出Node.js http://www.infoq.com/cn/master-nodejs 
+Node.js零起点开发:http://blog.csdn.net/kaosini/article/details/8084268 
+node.js入门(共13篇)http://www.cnblogs.com/softlover/category/406516.html 
+snoopyxdy的博客(大量node及express api的解读及进阶内容):http://t.cn/zQuKMKH 
+用node.js写web框架系列:http://my.oschina.net/Jeky/blog?catalog=262655 
+Luics的node.js系列: http://t.cn/zjATQlf 
+使用node.js建博客:http://witcheryne.iteye.com/blog/1172069 
+
+
+nodejs相关: 
+learnyounode中文版: https://github.com/lisposter/learnyounode 
+用socket.io 搭建聊天室: https://github.com/nswbmw/N-chat/wiki/_pages 
+
+nodejs实体中文图书: 
+
+Node.js权威指南: http://book.douban.com/subject/25892704/ 
+nodejs实战: http://book.douban.com/subject/25867920/ 2014-5 
+了不起的node.js： http://book.douban.com/subject/25767596/ 2014年1月 
+node.js高级编程: http://book.douban.com/subject/25799431/ 2013年12月 
+深入浅出nodejs： http://book.douban.com/subject/25768396/ 2013年12月 
+node.js入门经典： http://book.douban.com/subject/23780706/ 2013年4月 
+node.js开发指南： http://book.douban.com/subject/10789820/ 2012年7月 
+Node Web开发： http://book.douban.com/subject/10586326/ 2012年4月 
+
+#---------------------------------------------------------------------------------------------------
+
+#关键就是"数据结构"的操作吧.
+#设计模式都由framework包办了,
+#功能对象也由各种库的api包办了.
+
+#---------------------------------------------------------------------------------------------------
+http://nodeapi.ucdok.com/#/api/
+
+Node.js v0.10.18 手册 & 文档
+索引 | 在单一页面中浏览 | JSON格式
+
+
+目录
+显示原文其他翻译纠错
+关于本文档
+概述
+断言模块(assert)
+Buffer
+C/C++ 扩展
+子进程 (child_process)
+集群 (cluster)
+控制台 (console)
+加密 (crypto)
+调试器 (debugger)
+域名服务 (DNS)
+域 (Domain)
+事件 (events)
+文件系统 (fs)
+全局对象 (Globals)
+HTTP
+HTTPS
+模块 (Modules)
+网络 (Net)
+系统 (OS)
+路径处理 (Path)
+进程 (Process)
+编码系统 (Punycode)
+Query Strings
+逐行读取 (Readline)
+命令行交互 (REPL)
+Smalloc
+流 (Stream)
+字符串解码器 (String Decoder)
+定时器
+TLS/SSL
+终端 (TTY)
+UDP/Datagram
+URL
+实用工具(util)
+虚拟机 (VM)
+ZLIB
+#---------------------------------------------------------------------------------------------------
+https://nodejs.org/api/
+
+Node.js v0.12.4 Manual & Documentation
+Index | View on single page | View as JSON
+
+Table of Contents
+About these Docs
+Synopsis
+Assertion Testing
+Buffer
+C/C++ Addons
+Child Processes
+Cluster
+Console
+Crypto
+Debugger
+DNS
+Domain
+Events
+File System
+Globals
+HTTP
+HTTPS
+Modules
+Net
+OS
+Path
+Process
+Punycode
+Query Strings
+Readline
+REPL
+Smalloc
+Stream
+String Decoder
+Timers
+TLS/SSL
+TTY
+UDP/Datagram
+URL
+Utilities
+VM
+ZLIB
+#---------------------------------------------------------------------------------------------------
+https://coderwall.com/p/_ggh2w/the-array-native-every-filter-map-some-foreach-methods
+array迭代器
+
+The Array native every(), filter(), map(), some(), forEach() methods
+
+
+#---------------------------------------------------------------------------------------------------
+
+pgriess/node-jspack
+JavaScript library to pack primitives to octet arrays, packaged for NodeJS
+Updated on 23 May 2010
+
+#---------------------------------------------------------------------------------------------------
+http://nfriedly.com/techblog/2009/06/advanced-javascript-objects-arrays-and-array-like-objects/
+
+Advanced Javascript: Objects, Arrays, and Array-Like objects
+#---------------------------------------------------------------------------------------------------
+
+
