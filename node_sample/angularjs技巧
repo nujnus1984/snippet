@@ -1,0 +1,287 @@
+angular的核心思想是通过数据驱动一切,其他东西都是数据的延伸.
+
+套用Javascript一切皆对象的思想,在angular中可以说一切皆数据. 
+
+  关于项目构建
+
+    (1) requirejs以及Yeoman
+
+            在刚开始接触或者使用Angular的时候,总会疑惑与类似的问题,
+        我实践的答案是"不需要requirejs或者Yeoman".
+        前者不使用,因为angular本身有module的实现.
+        后者是因为Angular组织结构以及项目构建完全不必要弄得如此繁杂,
+        手写或者在github上pull一个seed项目即可.
+
+
+    (2) 如何组织项目结构
+
+        这个问题有点废材,因为完全因人因项目而异.
+        个人推荐的是两种组织结构,一种按照代码功能,
+        (A)
+        也就是controller都放在一个文件夹下,
+        services都放在一个文件夹下.
+        (B)
+        另一种则遵循所实现的功能,
+        比如User就把对应的template,services,controller
+        都放在User文件夹下.
+
+        两种都可以,从维护角度上看第二种会更好一些.
+
+
+    (3) controller以及service的划分
+
+            这里controller通常就是一个页面一个controller,假如一个页面有公共的部分,
+        公共部分永远使用一个controller.
+        对于service要划分成两个部分,一个是于服务器交互数据的service,
+        另一个是一些功能性common的内容,其中放置一些自己写的可复用的服务,
+        类似于notify等.
+
+            至于service要不要按照功能和模块再进一步划分,这个就看项目来了.
+
+
+    (4) Angular插件以及库的使用
+
+        对于一个项目所有的东西都去网上拿现成的肯定不现实,
+    但是所有的东西都自己写就更不实际了.
+    Angular的很多插件是由Angular团队开发出来或者一些人用jquery插件封装的.
+    我对于插件的观点很简单,
+    如果拿来用赶紧需求可以满足就用,
+    不能满足就自己写或者在已有插件上改进.
+
+
+        对于如果你调试几个小时还搞不定的插件,听我的劝,放弃它吧.
+    大多数插件都是一些UI插件,大可不必追求繁杂,
+    有时候简简单单的HTML控件也自有它简约的美.
+
+        如果你遇到Angular插件冲突,尤其是UI插件,
+        大多数的情况下要放弃其中之一,比如angular-ui和angular-strap.
+
+
+      使用技巧
+
+
+        下面进入正文,我会列举出我在使用angular的过程中使用的一些技巧,
+    会以场景的形式一一列举.这里对于Angular的一些基础概念我不会解释,
+    本文是一些技巧性的东西,不是基础教程.
+
+
+    (1) angular中"{{}}"于Python的flask冲突
+
+        Python的flask使用的模板中,数据绑定也是通过两个"{"大括号,
+    这就于angular的数据绑定有冲突.这个有两种解决方法,一种是修改angular的绑定标记,
+    另一种就是修改flask的绑定标记,这里两种方案都给出.
+
+        修改angular:
+
+    $interpolateProvider.startSymbol('{[{').endSymbol('}]}');
+    // 将这句话加在config中即可,放在route的module中即可.这里将原来angular的{{ }}绑定,修改为通过{[{ }]}绑定.
+
+        修改flask:
+
+    class CustomFlask(Flask):
+        jinja_options = Flask.jinja_options.copy()
+        jinja_options.update(dict(
+            block_start_string='{%',
+            block_end_string='%}',
+            variable_start_string='{#',
+            variable_end_string='#}',
+            comment_start_string='<#',
+            comment_end_string='#>',
+        ))
+
+    app = CustomFlask(__name__, instance_path='/web')
+
+        这里我推荐修改flask,因为用了angular之后,前后端分离.
+    flask的jinjia模板不再需要,同时如果你修改了Angular的绑定标记,其他的控件和库会有问题的.
+
+
+
+    (2) 去除url中总是默认带有"#"
+
+    在设置route的时候,开启HTML5模式.
+      angular.module('router', ['ngRoute'])
+      .config(['$routeProvider', '$locationProvider',
+        function($routeProvider, $locationProvider) {
+          $locationProvider.html5Mode(true);   // 设置一下这句即可
+        }
+      ]);
+
+    (3) ng-click="expression"以及类似的指令,如何在expression中书写多个表达式?
+
+    比如我在一个ng-click中想要给2个变量赋值,通过";"分号分割即可:
+
+    <a ng-click="obja=1;objb=2"></a>
+
+
+    (4) $watch没有产生作用或者只生效一次
+
+    这种情况一般来说是监听一个字符串或者数字的时候会出现,$scope.$watch("name",function(){}).
+没有生效或者只生效一次,解决方法是$watch尽量监听的是一个对象,将你要监听的值附在一个Object下即可.
+
+    当你使用angular-ui中的modal时,这个比较明显.具体的原因是因为$scope的继承,
+因为modal相当于在当前页面的controller中又创建了一个scope,
+所以对于字面量没法检索追溯原型链,想解决就要有一个对象,才能通过原型链实现跨父子scope的数据刷新绑定.
+
+
+
+    (5) 希望ng-view的内容全页面显示
+
+    通常一个页面可能会有固定的top-menu或者sidebar,这类固定不变的部分,
+然后每次route变化的都是ng-view的template,如果一个页面希望整个页面完全显示它自己,
+不包括top-menu之类固定的部分.
+
+    这里通常是一个index.html和一个ng-view显示的template.html,
+top-menu和sidebar位于index.html中,将它们的显示隐藏通过ng-if绑定一个变量控制.
+
+    如果一个页面需要自己完全显示,不显示sidebar等,则在其controller中通过$scope.$emit向上发送一个消息,
+然后index页面的controller则通过$scope.$on监听消息,一旦听到那个消息,则改变控制sidebar显隐的变量.
+
+    也可以通过service做一个全局的变量控制,个人推荐还是通过消息广播的方式.
+
+
+
+    (6) 切记用ng-if代替ng-show
+
+    这是angular的一个小坑,也可以说是不大不小的一个坑.
+    一些长列表数据,可能有一些东西是通过默认隐藏,点击显示的形式展现的.
+    而这部分可控制显隐的内容中也会伴随很多数据绑定.这个在页面渲染的时候非常影响性能.
+
+
+    举一个列子,比如说通常angular建议一个页面的数据绑定不超过2000个,假如现在有一个页面直接绑定了2000个model,
+    然后你加载,会发现非常卡.如果你将每100的model设置为ng-show,默认情况下不显示,你会发现还是很卡.
+
+    然后你将所有的ng-show换成ng-if,你会发现性能瞬间快的像两个应用.
+    原因在ng-show还是会执行其中的所有绑定,ng-if则会在等于true,也就是显示的时候再去执行其中的绑定.
+    这样一来性能就有很大的提高,我之前通过这个简单的修改,页面加载快了10倍左右.
+
+    所以在能使用ng-if的情况,用它代替所有的ng-show和ng-hide吧.
+
+
+
+    (7) 关于ng-bind-html
+
+    通常情况下为html元素绑定数据,有ng-bind就够了,但一些情境下需要绑定的不是一般的数据,而是html.
+    那么ng-bind就不够用了,需要使用ng-bind-html,它会将内容作为html格式输出.
+    比如想输出带有class的html,那么就使用ng-bind-html,而且还需要ngSanitize的配合,需要引入相应的文件.
+
+
+
+    (8) 获取ng-repeat数据filter后的结果
+
+    这个一般在搜索的时候需要用到,比如多重ng-repeat数据形成列表.然后filter一个字段,现在要得到filter之后的结果,有2中方式.
+
+    一种是在html的ng-repeat中类似这么写:
+
+    ng-repeat="food in foodCategory._displayfoods = (foodCategory.foods | filter: { 'name': searchobj.foodfilter } | orderBy: food.sort_order)"
+    这样_displayfoods就是filter后的最终显示的结果.另一种方式是通过两套数据,
+    一套写在controller中,然后filter以及orderBy都是在controller中操作,最后操作的结果在用来ng-repeat.
+
+    第一种方式比较方便,第二种方式更好,性能也好.
+
+
+
+    (9) ng-class以及ng-style通过判断赋值
+
+    根据变量的值决定是否应用某种class,以及不同的style样式.
+
+    ng-class="{'state-error':!foodForm.foodstock.$valid}"
+
+    ng-style="{ color: i.color=='' || i.name=='活' ? 'default' : '#fff' }"
+
+
+
+    (10) form校验以input为例
+
+    angular的form可以通过input的HTML5属性进行校验,
+    这里主要通过form以及input的name属性进行锁定,
+    formname.inputname.$valid表示name为inputname的空间是否通过本身的属性校验.
+
+
+
+    (11) $resource和$http的$promise
+
+    $q.all([
+      resource.query().$promise,
+      resource2.query().$promise
+    ]).then(functon(success){
+      console.log(success);
+    },functon(error){
+      console.log(error);
+    });
+
+    foodFactory.food.save(f).$promise.then(function(result){
+      foodFactory.food.get({id:result.id}).$promise.then(function(data){
+      });
+    });
+    这个不解释了,直接看就可以了,注意$http的promise需要手动返回,所以一般情况下都通过$resource.
+
+
+
+
+    (12) 仅$watch监听collection中的一个属性
+    $watch的第三个参数设置为true,
+    即可deep watch.不过有时候其实不想或者不需要监听collection的全部属性.
+    只要监视其中的一个或者几个,这时候通过for循环虽然可以循环$watch不过明显太挫.
+
+    通过下面这种写法就可以监控一个collection的单独一个object属性.
+
+    $scope.people = [
+    {
+        "groupname": "g1",
+        "persions": [
+            {
+                "id": 1,
+                "name": "bill"
+            },
+            {
+                "id": 2,
+                "name": "bill2"
+            } ] },
+    {
+        "groupname": "g2",
+        "persions": [
+            {
+                "id": 3,
+                "name": "bill3"
+            },
+            {
+                "id": 4,
+                "name": "bill4"
+            } ] } ]
+
+    $scope.$watch(function($scope) {
+        return $scope.people.map(function(obj) {
+            return obj.persions.map(function(g){
+                return g.name
+            });
+        });
+    }, function (newVal) {
+        $scope.count++;
+        $scope.msg = 'person name was changed'+ $scope.count;
+    }, true);
+
+
+    (13) debounce防抖处理
+
+    这个对于频繁出发的处理非常有用,适用于类似ng-change,$watch的一些场景.
+    比如根绝关键字即时搜索的场合,将$debounce封装为服务,
+    直接调用接口,代码:http://jsfiddle.net/Warspawn/6K7Kd/
+
+
+
+    (14) 快速定位到某个位置
+
+    一般来讲页面内通过<a id="bottom"></a>这样的形式就可以结合js代码,
+    实现快速定位.在angular中也是通过类似的原理实现,代码如下:
+
+          var old = $location.hash();
+          $location.hash('batchmenu-bottom');
+          $anchorScroll();
+          $location.hash(old);
+
+    这样写是因为直接location.hash会导致url变化,页面跳转,所以加了防止跳转的代码.
+    暂时就总结了这么多,很多东西都是查资料以及自己实践的,
+    希望对需要的TX会有所帮助,以后如果有新的东西会续写一下.
+
+
+

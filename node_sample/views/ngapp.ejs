@@ -1,0 +1,79 @@
+<!-- http://blog.fens.me/angularjs-express3-bootstrap3/ -->
+
+<!--要先通过bootstrap自己的email验证,才能被angular捕获-->
+
+<p>have a test</p>
+
+<div ng-app>
+  <h1>和bootstrap兼容 </h1>
+  <form role = "form" action = "/formpost" method ="post">
+    <div class = "form-group">
+      <label for = "Email">邮箱地址</label>
+      <input type = "email" ng-model ='what2' class = "form-control" id = "Email1" placeholder = "Enter email">
+      <input ng-model ='what'>
+      <span>{{what}}</span>
+    </div>
+    </form>
+    <p>{{what2}}</p>
+    <form class="form-inline" role="form">
+    <div class="form-group">
+      <label>Welcome</label>
+      <input type="text" class="form-control" ng-model="username" placeholder="Enter email">
+    </div>
+  </form>
+  <p> {{ username }}</p>
+
+  <div ng-controller='HelloController'>
+  <form class="form-inline" role="form">
+      <input type="text" class="form-control" ng-model="tst" placeholder="Enter email">
+      <p> {{tst}}</p>
+      <script>
+      function HellowController($scope, $location) {
+        $scrope.tst = "hello";
+      }
+      </script>
+  </form>
+  </div>
+</div>
+
+
+<div ng-app="app" ng-controller="parentCtr">
+    <div ng-controller="childCtr1">name :
+        <input ng-model="name" type="text" ng-change="change(name);" />
+    </div>
+    <div ng-controller="childCtr2">Ctr1 name:
+        <input ng-model="ctr1Name" />
+    </div>
+
+<script>
+angular.module("app", []).controller("parentCtr",
+function ($scope) {
+    $scope.$on("Ctr1NameChange",
+
+    function (event, msg) {
+        console.log("parent", msg);
+        $scope.$broadcast("Ctr1NameChangeFromParrent", msg);
+    });
+}).controller("childCtr1", function ($scope) {
+    $scope.change = function (name) {
+        console.log("childCtr1", name);
+        $scope.$emit("Ctr1NameChange", name);
+    };
+}).controller("childCtr2", function ($scope) {
+    $scope.$on("Ctr1NameChangeFromParrent",
+
+    function (event, msg) {
+        console.log("childCtr2", msg);
+        $scope.ctr1Name = msg;
+    });
+});
+
+</script>
+
+</div>
+
+
+
+<p>have a test</p>
+
+

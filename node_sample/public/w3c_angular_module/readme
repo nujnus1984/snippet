@@ -1,0 +1,190 @@
+
+模块定义了您的应用程序。
+所有的控制器都应该属于一个模块。
+模块保持全局命名空间中的整洁。
+
+
+在本实例中，"myApp.js" 包含了一个应用程序模块定义，"myCtrl.js" 包含了一个控制器：
+
+
+控制器污染了全局命名空间
+本教程中，截至目前为止的所有实例都使用了全局函数。
+在所有的应用程序中，都应该尽量避免使用全局变量和全局函数。
+全局值（变量或函数）可被其他脚本重写或破坏。
+为了解决这个问题，AngularJS 使用了模块。
+
+
+
+请注意，本实例中，AngularJS 库是在 <head> 区域被加载。
+模块定义应放置在何处？
+对于 HTML 应用程序，通常建议把所有的脚本都放置在 <body> 元素的最底部。
+
+这会提高网页加载速度，因为 HTML 加载不受制于脚本加载。
+
+在上面的多个 AngularJS 实例中，您将看到 AngularJS 库是在文档的 <head> 区域被加载。
+
+在上面的实例中，AngularJS 在 <head> 元素中被加载，因为对 angular.module 的调用只能在库加载完成后才能进行。
+
+另一个解决方案是在 <body> 元素中加载 AngularJS 库，但是必须放置在您的 AngularJS 脚本前面：
+
+
+
+请注意，本实例中，AngularJS 库是在 <head> 区域被加载。
+模块定义应放置在何处？
+对于 HTML 应用程序，通常建议把所有的脚本都放置在 <body> 元素的最底部。
+这会提高网页加载速度，因为 HTML 加载不受制于脚本加载。
+在上面的多个 AngularJS 实例中，您将看到 AngularJS 库是在文档的 <head> 区域被加载。
+在上面的实例中，AngularJS 在 <head> 元素中被加载，因为对 angular.module 的调用只能在库加载完成后才能进行。
+另一个解决方案是在 <body> 元素中加载 AngularJS 库，但是必须放置在您的 AngularJS 脚本前面：
+
+
+
+AngularJS 应用程序文件
+现在您已经知道模块是什么以及它们是如何工作的，现在您可以尝试创建您自己的应用程序文件。
+您的应用程序至少应该有一个模块文件，一个控制器文件。
+首先，创建模块文件 "myApp.js"：
+
+    var app = angular.module("myApp", []);
+
+然后，创建控制器文件。本实例中是 "myCtrl.js"：
+
+    app.controller("myCtrl", function($scope) {
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+    });
+
+最后，编辑您的 HTML 页面：
+
+    <!DOCTYPE html>
+    <html>
+    <body>
+
+    <div ng-app="myApp" ng-controller="myCtrl">
+    {{ firstName + " " + lastName }}
+    </div>
+
+    <script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>
+    <script src="myApp.js"></script>
+    <script src="myCtrl.js"></script>
+
+    </body>
+    </html>
+
+
+;------------------------------------------
+（三）ng-app的使用困惑和angularJS框架的自动加载
+ng-app是angular的一个指令，代表一个angular应用（也叫模块）。使用ng-app或ng-app=""来标记一个DOM结点，让框架会自动加载。也就是说，ng-app是可以带属性值的。如果想要实现自动加载，那么就不能让ng-app带有属性值。
+1、不含ng-app，无法自动加载，这个比较好理解。
+2、含有2个ng-app，那么只会自动加载第一个，这个也好理解。
+3、ng-app带有属性，不能自动加载
+4、不带属性的在前，带属性的在后。ng-app标记的模块可以自动加载
+5、带属性的在前，不带属性的在后。ng-app标记的模块不能自动加载
+第4和5两种情况很奇怪，不应该有这种顺序的区别，也没有必要这样区分，猜测应该是框架的bug。有人明白的话，欢迎指教。
+;------------------------------------------
+
+
+(((ng-bind-html 的使用)))
+
+
+Angular.js动态加载html无法解析
+VDONVDON 121 2014年08月09日 提问
+关注  1 关注
+收藏  0 收藏，2k 浏览
+问题对人有帮助，内容完整，我也想知道答案0 问题没有实际价值，缺少关键内容，没有改进余地
+app.js:
+
+$http.get(article.html).success(function(data) {
+    $scope.content = data;
+});
+index.html:
+
+<article>
+    {{content}}
+</article>
+article.html:
+
+<h1>Hello World</h1>
+此时在浏览器中显示出的是<h1>Hello World</h1>而不是我希望的Hello World。
+
+请问是为什么，如何解决？
+
+angularjs javascript html html5
+链接 评论 更多
+默认排序时间排序
+1 个回答
+
+答案对人有帮助，有参考价值0 答案没帮助，是错误的答案，答非所问
+采纳
+why520crazy 403 2014年08月09日 回答 · 2014年08月09日 更新
+使用指令 ng-bind-html http://www.ngnice.com/docs/api/ng/directive/ngBindHtml
+;------------------------------------------
+
+
+
+angular中的ng-bind-html指令和$sce服务
+时间 2014-08-18 14:06:26  segmentfault-博客
+原文  http://blog.segmentfault.com/wangxiansheng/1190000000639561
+主题 Html JavaScript
+angular js的强大之处之一就是他的数据双向绑定这一牛B功能，
+我们会常常用到的两个东西就是ng-bind和针对form的ng-model。
+但在我们的项目当中会遇到这样的情况，后台返回的数据中带有各种各样的html标签。如：
+
+
+
+$scope.currentWork.description = “hello,<br><b>今天我们去哪里？</b>”
+我们用ng-bind-html这样的指令来绑定，结果却不是我们想要的。是这样的
+
+hello,
+
+今天我们去哪里？
+
+怎么办呢？
+
+对于angular 1.2一下的版本我们必须要使用$sce这个服务来解决我们的问题。
+所谓sce即“Strict Contextual Escaping”的缩写。
+翻译成中文就是“严格的上下文模式”也可以理解为安全绑定吧。                   (((严格的上下文安全绑定.)))
+来看看怎么用吧。
+
+
+controller code:
+
+$http.get('/api/work/get?workId=' + $routeParams.workId).success(function (work) {$scope.currentWork = work;});
+HTML code:
+
+
+<p> {{currentWork.description}}</p>
+我们返回的内容中包含一系列的html标记。表现出来的结果就如我们文章开头所说的那样。
+这时候我们必须告诉它安全绑定。
+它可以通过使用$sce.trustAsHtml()。
+该方法将值转换为特权所接受并能安全地使用“ng-bind-html”。
+所以，我们必须在我们的控制器中引入$sce服务
+
+
+
+controller('transferWorkStep2', ['$scope','$http','$routeParams','$sce', function ($scope,$http, $routeParams, $sce) {
+$http.get('/api/work/get?workId=' + $routeParams.workId)
+.success(function (work) {
+    $scope.currentWork = work;
+    $scope.currentWork.description = $sce.trustAsHtml($rootScope.currentWork.description);
+});
+html code:
+
+<p ng-bind-html="currentWork.description"></p>
+这样结果就完美的呈现在页面上了：
+
+hello
+
+今天我们去哪里？
+
+咱们还可以这样用，把它封装成一个过滤器就可以在模板上随时调用了
+
+app.filter('to_trusted', ['$sce', function ($sce) {
+return function (text) {
+    return $sce.trustAsHtml(text);
+};
+}]);
+
+html code:
+
+<p ng-bind-html="currentWork.description | to_trusted"></p>
+原文地址： http://www.w3cscript.com/Angular/2014-05-26/349.html

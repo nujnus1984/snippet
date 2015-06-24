@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src ="/bower_components/angularjs/angular.js"></script>
+</head>
+<body>
+<!-- 主体-->
+  <div ng-app = "test" >
+       <input ng-model ='what'>
+       <b><span>{{what}}</span></b>
+       <b><span>{{what}}</span></b>
+
+       <script>
+       function T($scope) {
+       };
+       </script>
+
+    <div ng-controller = 'T'>
+    </div>
+
+
+
+
+  <div ng-controller = 'CartController'>
+    <div ng-repeat='item in items'>
+      <b> {{item.title}}</b>
+      <p> {{item.content}}</p>
+    </div>
+    <script>
+    function CartController($scope) {
+      $scope.items = [
+        {title: "asdfkjasl", content:"ddakjfalsfdl;akjfl"},
+        {title: "asdfkjasl", content:"ddakjfalsfdl;akjfl"},
+        {title: "asdfkjasl", content:"ddakjfalsfdl;akjfl"},
+      ];
+    }
+    </script>
+  </div>
+
+
+  </div>
+
+</body>
+</html>

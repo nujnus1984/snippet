@@ -1,0 +1,13 @@
+<p>hello</p>
+<div><%= title %></div>
+<div><%= team %></div>
+<p>hello</p>
+<!-- 来个列表把 -->
+
+<%  if (students.length) { %>
+  <ul>
+    <% students.forEach(function (student) { %>
+      <li> <%= student.name %> (<%= student.age %>)</li>
+    <% })>%>
+  </ul>
+<% } %>
