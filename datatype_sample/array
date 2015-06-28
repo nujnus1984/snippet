@@ -1,0 +1,54 @@
+
+//感觉array是js中最重要最基本的数据类型了.  因为没有什么hash啊map啊之类的吧.  js的理念很简单.
+
+
+//((javascript启示录))page97
+
+//9.4数组对象的实例属性和方法:
+  //实例属性
+  constructor
+  index
+  input
+  length
+
+  //实例方法
+  pop
+  push
+  reverse
+  shift
+  sort
+  splice
+  unshift
+  concat
+  join
+  slice
+
+
+//遍历数组 ((javascript启示录))page101
+while (counter < xxx.length) {
+  xxx[counter] //处理元素
+  xxx ++
+}
+
+或: 不过不推荐:
+var counter = xxx.length
+while (counter --) { //while是吃0的,
+  xxx[counter] //处理元素
+}
+
+
+
+//es5中新增的方法
+一、前言-索引
+ES5中新增的不少东西，了解之对我们写JavaScript会有不少帮助，比如数组这块，我们可能就不需要去有板有眼地for循环了。
+ES5中新增了写数组方法，如下：
+forEach (js v1.6)
+map (js v1.6)
+filter (js v1.6)
+some (js v1.6)
+every (js v1.6)
+indexOf (js v1.6)
+lastIndexOf (js v1.6)
+reduce (js v1.8)
+reduceRight (js v1.8)
+

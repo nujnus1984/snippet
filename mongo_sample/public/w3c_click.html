@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div ng-app="" ng-controller="myController">
+
+<button ng-click="count = count + 1">点我!</button>
+
+<p>{{ count }}</p>
+
+</div>
+<script>
+function myController($scope) {
+    $scope.count = 0;
+}
+</script> 
+
+<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>
+
+
+</body>
+</html>

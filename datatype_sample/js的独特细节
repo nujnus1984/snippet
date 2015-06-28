@@ -1,0 +1,86 @@
+
+this
+
+//------------------------------------------------------------------------------------------
+typeof 1231 #=> 'number'
+
+//------------------------------------------------------------------------------------------
+//使用hasOwnProperty验证对象属性不是来自原型链  ((javascript启示录))page37
+var myObject = {foo:'vvv'};
+console.log(myObject.hasOwnProperty('foo')); //如果来自本身,而不是来自原型链, 则返回true
+
+//------------------------------------------------------------------------------------------
+//使用in操作符检查一个对象是否包含给定属性   ((javascript启示录))page37~38
+var myObject = {foo:'vvv'};
+console.log('foo' in  myObject);  //如果存在则返回 true, 比hasOwnProperty更宽松
+
+  //但同样的招数,不能用在数组上.
+  > console.log(123 in [123,456]);
+  false
+  undefined
+  > var a = 123
+  undefined
+  > var b = [a,456];
+  undefined
+  > console.log(a in b);
+  false
+  undefined
+  > console.log("123" in b);
+  false
+
+//------------------------------------------------------------------------------------------
+//循环遍历对象的属性((javascript启示录))page37
+//for in
+//
+for (var key in xxxx) { //加个var确保不定义在全局,仅仅作为临时变量
+  if (xxxx.hasOwnProperty(key)) { //确保属性不是来自 继承链的
+      key; //直接操作key就行了
+  }
+}
+
+
+//------------------------------------------------------------------------------------------
+//2.10 使用Underscore.js增强及扩展对象:
+//适用与所有对象和数组的"增强函数":
+each
+map
+reduce
+reduceRight
+detect
+reject
+all
+any
+include
+invoke
+pluck
+max
+min
+sortBy
+sortIndex
+toArray
+size
+
+//仅适用于所有对象的"增强函数":
+keys
+values
+functions
+extend
+clone
+tap
+        //测试型方法
+isEqual
+isEmpty
+isElement
+isArray
+isArguments
+isFunction
+isString
+isNumber
+isBoolean
+isDate
+isRegExp
+isNaN
+isNull
+isUndefined
+
+

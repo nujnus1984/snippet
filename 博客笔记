@@ -1,0 +1,29 @@
+
+由于不知道tmuxinator文件, 怎么设置动态的root变量,
+所以在启动时,新建一个环境变量,  并让tmuxinator自己去识别.
+
+my_pwd=`pwd` && export my_pwd && ts my_tmuxiantor_file
+
+;tmuxincator文件里,则这样写:
+windows:
+  - editor:
+      layout: tiled
+      panes:
+        - cd 
+        - cd 
+        - cd 
+        - cd 
+
+;-----------------------
+;用guake打开一堆目录:
+guake -n  `pwd`
+guake -e  "cd views"
+guake -r  "views"
+
+guake -n  `pwd`
+guake -e  "cd controllers"
+guake -r  "controllers"
+;-----------------------
+
+
+

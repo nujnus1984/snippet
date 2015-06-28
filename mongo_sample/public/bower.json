@@ -1,0 +1,22 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/nujnus1984/snippet",
+  "authors": [
+    "nujnus <nujnus9221@163.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angularjs": "~1.4.1",
+    "bootstrap": "~3.3.5",
+    "restangular": "~1.5.1",
+    "font-awesome": "~4.3.0"
+  }
+}

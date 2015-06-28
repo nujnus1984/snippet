@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div ng-app="" ng-controller="myCtrl">
+{{ firstName + " " + lastName }}
+</div>
+
+<script>
+function myCtrl($scope) {
+    $scope.firstName = "John";
+    $scope.lastName = "Doe";
+}
+</script>
+
+<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>
+
+</body>
+</html>
+

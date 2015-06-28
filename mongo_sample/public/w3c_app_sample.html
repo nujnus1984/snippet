@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<div ng-app="myTodoApp" ng-controller="myTodoCtrl">
+
+<h2>我的笔记</h2>
+
+<p><textarea ng-model="message" cols="40" rows="5"></textarea></p>
+
+<p>
+<button ng-click="save()">保存</button>
+<button ng-click="clear()">清除</button>
+</p>
+
+<p>剩下的字符数: <span ng-bind="left()"></span></p>
+
+</div>
+
+<script src="//www.w3cschool.cc/try/angularjs/1.2.5/angular.min.js"></script>
+<script src="js/myTodoApp.js"></script>
+<script src="js/myTodoCtrl.js"></script>
+
+</body>
+</html>
